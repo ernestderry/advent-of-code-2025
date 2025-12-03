@@ -22,12 +22,9 @@ public class Day1b extends Solution {
             String direction = matcher.group(1);
             int clicks = Integer.parseInt(matcher.group(2));
 
+            int move = "R".equals(direction) ? 1 : -1;
             for (int click = 0; click < clicks; click += 1) {
-                if ("R".equals(direction)) {
-                    dial += 1;
-                } else {
-                    dial -= 1;
-                }
+                dial += move;
                 if (dial % 100 == 0) {
                     zeroCount += 1;
                 }
