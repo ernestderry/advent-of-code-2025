@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 public class Day1a extends Solution {
 
     Day1a() {
-        super.day = 0;
+        super.day = 1;
         super.part = "a";
     }
 
@@ -24,14 +24,11 @@ public class Day1a extends Solution {
 
             if ("R".equals(direction)) {
                 dial += clicks;
-                if (dial == 100) {
-                    zeroCount += 1;
-                }
             } else {
                 dial -= clicks;
-                if (dial == 0) {
-                    zeroCount += 1;
-                }
+            }
+            if (dial % 100 == 0) {
+                zeroCount += 1;
             }
         }
 

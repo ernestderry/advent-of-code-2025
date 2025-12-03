@@ -12,7 +12,7 @@ public abstract class Solution {
     String part;
 
     List<String> getPuzzleInput() throws IOException {
-        String filename = "day" + day + ".txt";
+        String filename = "day" + day + part + ".txt";
         List<String> puzzleInput;
         try (InputStream inputStream = App.class.getClassLoader().getResourceAsStream(filename)) { 
             if (inputStream == null) {

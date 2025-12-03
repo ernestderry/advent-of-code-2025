@@ -6,7 +6,7 @@ package advent.of.code;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        // solve(new Day1a());
+        solve(new Day1a());
         // solve(new Day1b());
     }
 

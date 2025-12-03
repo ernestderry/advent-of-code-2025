@@ -51,17 +51,35 @@ public class Day1aTest {
         assertEquals("0", day1a.solve(puzzleInput));
     }
 
-    // @Test
-    // public void examplePuzzleInput() throws IOException {
-    //     List<String> puzzleInput = readPuzzleInputFromFile("day1a_example.txt"); 
-    //     assertEquals("", dayX.solve(puzzleInput));
-    // }
+    @Test
+    public void rotateToZeroIn3StepsLeftAndRight() {
+        List<String> puzzleInput= List.of("L60", "R20", "L10");
+        assertEquals("1", day1a.solve(puzzleInput));
+    }
 
-    // @Test
-    // public void actualPuzzleInput() throws IOException {
-    //     List<String> puzzleInput = readPuzzleInputFromFile("dayX.txt"); 
-    //     assertEquals("", dayX.solve(puzzleInput));
-    // }
+    @Test
+    public void rotateRightToZeroTwice() {
+        List<String> puzzleInput= List.of("R50", "R10", "R90");
+        assertEquals("2", day1a.solve(puzzleInput));
+    }
+
+    @Test
+    public void rotateLeftToZeroThreeTimes() {
+        List<String> puzzleInput= List.of("L50", "L300", "L20", "L80", "L10");
+        assertEquals("3", day1a.solve(puzzleInput));
+    }
+
+    @Test
+    public void examplePuzzleInput() throws IOException {
+        List<String> puzzleInput = readPuzzleInputFromFile("day1a_example.txt"); 
+        assertEquals("3", day1a.solve(puzzleInput));
+    }
+
+    @Test
+    public void actualPuzzleInput() throws IOException {
+        List<String> puzzleInput = readPuzzleInputFromFile("day1a.txt"); 
+        assertEquals("1158", day1a.solve(puzzleInput));
+    }
 
     private List<String> readPuzzleInputFromFile(String filename) throws FileNotFoundException, IOException {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename)) { 
