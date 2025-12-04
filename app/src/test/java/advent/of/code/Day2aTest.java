@@ -22,16 +22,46 @@ public class Day2aTest {
     }
 
     @Test
-    public void examplePuzzleInput() throws IOException {
-        List<String> puzzleInput = readPuzzleInputFromFile("day2a_example.txt"); 
-        assertEquals("", day2a.solve(puzzleInput));
+    public void oddNumberOfDigitRangesAreValid() {
+        List<String> puzzleInput = List.of("110-119");
+        assertEquals("0", day2a.solve(puzzleInput));
     }
 
-    // @Test
-    // public void actualPuzzleInput() throws IOException {
-    //     List<String> puzzleInput = readPuzzleInputFromFile("dayX.txt"); 
-    //     assertEquals("", dayX.solve(puzzleInput));
-    // }
+    @Test
+    public void singleRangeWithOneInvalidId() {
+        List<String> puzzleInput = List.of("446443-446449");
+        assertEquals("446446", day2a.solve(puzzleInput));
+    }
+
+    @Test
+    public void singleRangeWithTwoInvalidIds() {
+        List<String> puzzleInput = List.of("11-22");
+        assertEquals("33", day2a.solve(puzzleInput));
+    }
+
+    @Test
+    public void rangeWithoutAnInvalidId() {
+        List<String> puzzleInput = List.of("12-21");
+        assertEquals("0", day2a.solve(puzzleInput));
+    }
+
+    @Test
+    public void multipleRangesWithInvalidIds() {
+        List<String> puzzleInput = List.of("446443-446449,11-22");
+        assertEquals("446479", day2a.solve(puzzleInput));
+    }
+
+    @Test
+    public void examplePuzzleInput() throws IOException {
+        List<String> puzzleInput = readPuzzleInputFromFile("day2a_example.txt"); 
+        assertEquals("1227775554", day2a.solve(puzzleInput));
+    }
+
+    @Test
+    public void actualPuzzleInput() throws IOException {
+        List<String> puzzleInput = readPuzzleInputFromFile("day2.txt"); 
+        assertEquals("23560874270", day2a.solve(puzzleInput));
+    }
 
     private List<String> readPuzzleInputFromFile(String filename) throws FileNotFoundException, IOException {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename)) { 
