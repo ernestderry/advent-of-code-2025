@@ -22,12 +22,6 @@ public class Day2bTest {
     }
 
     @Test
-    public void oddNumberOfDigitRangesAreValid() {
-        List<String> puzzleInput = List.of("110-119");
-        assertEquals("0", day2b.solve(puzzleInput));
-    }
-
-    @Test
     public void singleRangeWithOneInvalidId() {
         List<String> puzzleInput = List.of("446443-446449");
         assertEquals("446446", day2b.solve(puzzleInput));
@@ -49,25 +43,43 @@ public class Day2bTest {
     public void multipleRangesWithInvalidIds() {
         List<String> puzzleInput = List.of("446443-446449,11-22");
         assertEquals("446479", day2b.solve(puzzleInput));
+    }    
+
+    @Test
+    public void anyLengthStringRepeatedAtLeastTwice2() {
+        List<String> puzzleInput = List.of("998-1012");   //999 and 1010
+        assertEquals("2009", day2b.solve(puzzleInput));
     }
 
-    // @Test
-    // public void anyLengthStringRepeatedAtLeastTwice() {
-    //     List<String> puzzleInput = List.of("95-111");   //99 and 111
-    //     assertEquals("120", day2b.solve(puzzleInput));
-    // }
+    @Test
+    public void anyLengthStringRepeatedAtLeastTwice3() {
+        List<String> puzzleInput = List.of("565653-565659");
+        assertEquals("565656", day2b.solve(puzzleInput));
+    }
 
-    // @Test
-    // public void examplePuzzleInput() throws IOException {
-    //     List<String> puzzleInput = readPuzzleInputFromFile("day2b_example.txt"); 
-    //     assertEquals("1227775554", day2b.solve(puzzleInput));
-    // }
+    @Test
+    public void anyLengthStringRepeatedAtLeastTwice4() {
+        List<String> puzzleInput = List.of("824824821-824824827");
+        assertEquals("824824824", day2b.solve(puzzleInput));
+    }
 
-    // @Test
-    // public void actualPuzzleInput() throws IOException {
-    //     List<String> puzzleInput = readPuzzleInputFromFile("day2.txt"); 
-    //     assertEquals("23560874270", day2b.solve(puzzleInput));
-    // }
+    @Test
+    public void anyLengthStringRepeatedAtLeastTwice5() {
+        List<String> puzzleInput = List.of("2121212118-2121212124");
+        assertEquals("2121212121", day2b.solve(puzzleInput));
+    }
+
+    @Test
+    public void examplePuzzleInput() throws IOException {
+        List<String> puzzleInput = readPuzzleInputFromFile("day2b_example.txt"); 
+        assertEquals("4174379265", day2b.solve(puzzleInput));
+    }
+
+    @Test
+    public void actualPuzzleInput() throws IOException {
+        List<String> puzzleInput = readPuzzleInputFromFile("day2.txt"); 
+        assertEquals("44143124633", day2b.solve(puzzleInput));
+    }
 
     private List<String> readPuzzleInputFromFile(String filename) throws FileNotFoundException, IOException {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename)) { 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 public class Day2b extends Solution {
@@ -25,26 +26,39 @@ public class Day2b extends Solution {
         long end = Long.valueOf(range.split("-")[1]);
 
         return LongStream.range(start, end + 1)
-            .filter(id -> isInvalidId(String.valueOf(id), 2))
+            .filter(id -> isInvalidId(String.valueOf(id)))
             .sum();
     }
 
-    private boolean isInvalidId(String id, int parts) {
-        if (id.length() % parts != 0) {
+    private boolean isInvalidId(String id) {
+        return IntStream.range(1, id.length())
+            .mapToObj(Integer::valueOf)
+            .anyMatch(i -> isInvalidId(id, i));            
+    }
+
+    private boolean isInvalidId(String id, int groupSize) {
+        if (id.length() % groupSize != 0) {
             return false;
         }
 
-        int groupSize = id.length() / parts;
+        int numGroups = id.length() / groupSize;
+        if (numGroups < 2) {
+            return false;
+        }
 
         List<String> groups = new ArrayList<String>();
-        for(int group = 0; group < parts; group++) {
+        for(int group = 0; group < numGroups; group++) {
             groups.add(id.substring(group * groupSize, (group + 1) * groupSize));
         }
 
         String firstGroup = groups.get(0);
-        return groups.stream()
+        boolean result = groups.stream()
             .allMatch(group -> group.equals(firstGroup));
-            
+
+        if (result == true) {
+            System.out.println("match " + id + " with " + groupSize);
+        }
+        return result;   
     }
 
 }
