@@ -18,7 +18,8 @@ public class Day2b extends Solution {
 
         List<String> ranges = Arrays.asList(puzzleInput.get(0).split(","));
         return String.valueOf(ranges.stream()
-            .collect(Collectors.summingLong(range -> sumInvalidIdsInRange(range))));
+            .mapToLong(range -> sumInvalidIdsInRange(range))
+            .sum());
     }
 
     private long sumInvalidIdsInRange(String range) {
@@ -32,7 +33,6 @@ public class Day2b extends Solution {
 
     private boolean isInvalidId(String id) {
         return IntStream.range(1, id.length())
-            .mapToObj(Integer::valueOf)
             .anyMatch(i -> isInvalidId(id, i));            
     }
 
@@ -52,13 +52,8 @@ public class Day2b extends Solution {
         }
 
         String firstGroup = groups.get(0);
-        boolean result = groups.stream()
+        return groups.stream()
             .allMatch(group -> group.equals(firstGroup));
 
-        if (result == true) {
-            System.out.println("match " + id + " with " + groupSize);
-        }
-        return result;   
     }
-
 }
