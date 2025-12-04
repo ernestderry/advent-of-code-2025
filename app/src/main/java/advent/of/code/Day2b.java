@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
-import java.util.stream.Stream;
 
 public class Day2b extends Solution {
 
@@ -35,24 +34,17 @@ public class Day2b extends Solution {
             return false;
         }
 
+        int groupSize = id.length() / parts;
+
         List<String> groups = new ArrayList<String>();
         for(int group = 0; group < parts; group++) {
-            groups.add(id.substring(group * parts, (group + 1) * parts));
+            groups.add(id.substring(group * groupSize, (group + 1) * groupSize));
         }
 
         String firstGroup = groups.get(0);
         return groups.stream()
             .allMatch(group -> group.equals(firstGroup));
             
-
-        // String part1 = id.substring(0, id.length() / parts);
-        // String part2 = id.substring(id.length() / parts, id.length());
-
-        // if (part1.equals(part2)) {
-        //     return true;
-        // }
-
-        // return false;
     }
 
 }
