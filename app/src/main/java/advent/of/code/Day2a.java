@@ -5,12 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
 
-public class Day2a extends Solution {
-
-    Day2a() {
-        super.day = 2;
-        super.part = "a";
-    }
+public class Day2a {
 
     String solve(List<String> puzzleInput) {
 

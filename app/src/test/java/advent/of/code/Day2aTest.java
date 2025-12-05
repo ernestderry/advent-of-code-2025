@@ -53,7 +53,7 @@ public class Day2aTest {
 
     @Test
     public void examplePuzzleInput() throws IOException {
-        List<String> puzzleInput = readPuzzleInputFromFile("day2a_example.txt"); 
+        List<String> puzzleInput = readPuzzleInputFromFile("day2_example.txt"); 
         assertEquals("1227775554", day2a.solve(puzzleInput));
     }
 

@@ -4,12 +4,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day1a extends Solution {
-
-    Day1a() {
-        super.day = 1;
-        super.part = "a";
-    }
+public class Day1a {
 
     String solve(List<String> puzzleInput) {
         int zeroCount = 0;
