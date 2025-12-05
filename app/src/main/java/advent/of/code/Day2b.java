@@ -3,7 +3,6 @@ package advent.of.code;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
@@ -32,7 +31,7 @@ public class Day2b extends Solution {
     }
 
     private boolean isInvalidId(String id) {
-        return IntStream.range(1, id.length())
+        return IntStream.range(1, id.length() / 2 + 1)
             .anyMatch(i -> isInvalidId(id, i));            
     }
 
