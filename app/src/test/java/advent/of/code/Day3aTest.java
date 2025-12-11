@@ -58,17 +58,17 @@ public class Day3aTest {
     }
 
     
-    // @Test
-    // public void examplePuzzleInput() throws IOException {
-    //     List<String> puzzleInput = readPuzzleInputFromFile("dayX_example.txt"); 
-    //     assertEquals("", day3a.solve(puzzleInput));
-    // }
+    @Test
+    public void examplePuzzleInput() throws IOException {
+        List<String> puzzleInput = readPuzzleInputFromFile("day3_example.txt"); 
+        assertEquals("357", day3a.solve(puzzleInput));
+    }
 
-    // @Test
-    // public void actualPuzzleInput() throws IOException {
-    //     List<String> puzzleInput = readPuzzleInputFromFile("dayX.txt"); 
-    //     assertEquals("", dayX.solve(puzzleInput));
-    // }
+    @Test
+    public void actualPuzzleInput() throws IOException {
+        List<String> puzzleInput = readPuzzleInputFromFile("day3.txt"); 
+        assertEquals("17087", day3a.solve(puzzleInput));
+    }
 
     private List<String> readPuzzleInputFromFile(String filename) throws FileNotFoundException, IOException {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename)) { 
