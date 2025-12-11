@@ -9,28 +9,26 @@ public class Day3a {
 
         return String.valueOf(puzzleInput.stream()
             .mapToInt(bank -> getBankJoltage(bank))
-            .sum());
-            
+            .sum());            
     }
 
-    private Integer getBankJoltage(String bank) {
-        char[] batteries = bank.toCharArray();
+    private int getBankJoltage(String bank) {
         int maxPos = 0;
-        int max = Integer.parseInt(String.valueOf(batteries[0]));
-        for(int battery=1; battery < batteries.length-1; battery++) {
-            int batteryPower = Integer.parseInt(String.valueOf(batteries[battery]));
+        int max = bank.charAt(0) - '0';
+        for(int battery=1; battery < bank.length() - 1; battery++) {
+            int batteryPower = bank.charAt(battery) - '0';
             if (batteryPower > max) {
                 max = batteryPower;
                 maxPos = battery;
             }
         }
-        int digit1 = Integer.parseInt(String.valueOf(batteries[maxPos]));   
+        int digit1 = max;   
 
-        int digit2 = IntStream.range(maxPos + 1, batteries.length)
-            .map(battery -> Integer.parseInt(String.valueOf(batteries[battery])))
+        int digit2 = IntStream.range(maxPos + 1, bank.length())
+            .map(battery -> bank.charAt(battery) - '0')
             .max()
             .getAsInt();            
 
-        return Integer.parseInt(String.valueOf(digit1) + String.valueOf(digit2));
+        return digit1 * 10 + digit2;
     }
 }
