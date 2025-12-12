@@ -39,29 +39,29 @@ public class Day3bTest {
         assertEquals("434234234278", day3b.solve(puzzleInput));
     }
 
-    // @Test
+    @Test
     public void test4() throws IOException {
         List<String> puzzleInput = List.of("818181911112111");
-        assertEquals("92", day3b.solve(puzzleInput));
+        assertEquals("888911112111", day3b.solve(puzzleInput));
     }
 
-    // @Test
-    // public void twoBanksAreAddedTogether() throws IOException {
-    //     List<String> puzzleInput = List.of("234234234234278","818181911112111");
-    //     assertEquals("170", day3b.solve(puzzleInput));
-    // }
+    @Test
+    public void twoBanksAreAddedTogether() throws IOException {
+        List<String> puzzleInput = List.of("234234234234278","818181911112111");
+        assertEquals("1323145346389", day3b.solve(puzzleInput));
+    }
 
     
-    // @Test
-    // public void examplePuzzleInput() throws IOException {
-    //     List<String> puzzleInput = readPuzzleInputFromFile("day3_example.txt"); 
-    //     assertEquals("357", day3b.solve(puzzleInput));
-    // }
+    @Test
+    public void examplePuzzleInput() throws IOException {
+        List<String> puzzleInput = readPuzzleInputFromFile("day3_example.txt"); 
+        assertEquals("3121910778619", day3b.solve(puzzleInput));
+    }
 
     @Test
     public void actualPuzzleInput() throws IOException {
         List<String> puzzleInput = readPuzzleInputFromFile("day3.txt"); 
-        assertEquals("17087", day3b.solve(puzzleInput));
+        assertEquals("169019504359949", day3b.solve(puzzleInput));
     }
 
     private List<String> readPuzzleInputFromFile(String filename) throws FileNotFoundException, IOException {

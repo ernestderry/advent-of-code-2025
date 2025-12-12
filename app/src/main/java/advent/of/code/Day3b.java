@@ -16,7 +16,7 @@ public class Day3b {
         long total = 0;
         int maxPos = -1;
         for (int b = batteriesToUse; b > 1; b--) {
-            maxPos = positionOfLargestBatteryInRange(bank, maxPos + 1, bank.length() - batteriesToUse + 1);
+            maxPos = positionOfLargestBatteryInRange(bank, maxPos + 1, bank.length() - b + 1);
             int digit = bank.charAt(maxPos) - '0';  
             total += digit * Math.pow(10, b-1);
         }
@@ -31,8 +31,8 @@ public class Day3b {
 
     private int positionOfLargestBatteryInRange(String bank, int start, int end) {
         int maxPos = start;
-        int max = bank.charAt(0) - '0';
-        for(int battery=1; battery < end; battery++) {
+        int max = bank.charAt(start) - '0';
+        for(int battery=start; battery < end; battery++) {
             int batteryPower = bank.charAt(battery) - '0';
             if (batteryPower > max) {
                 max = batteryPower;
@@ -40,5 +40,7 @@ public class Day3b {
             }
         }     
         return maxPos;   
+
+        //234234234234278
     }
 }
