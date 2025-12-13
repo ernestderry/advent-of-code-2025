@@ -15,7 +15,13 @@ public class Day3b {
         long total = 0;
         int maxPos = -1;
         for (int b = batteriesToUse; b > 0; b--) {
-            maxPos = positionOfLargestBatteryInRange(bank, maxPos + 1, bank.length() - b + 1);
+            int start = maxPos + 1;
+            int end = bank.length() - b + 1;
+            if (start == end) {
+                maxPos = start;
+            } else {
+                maxPos = positionOfLargestBatteryInRange(bank, start, end);
+            }
             int digit = bank.charAt(maxPos) - '0';  
             total += digit * Math.pow(10, b-1);
         }          
