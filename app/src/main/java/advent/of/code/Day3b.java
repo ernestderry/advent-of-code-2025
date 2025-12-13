@@ -12,21 +12,22 @@ public class Day3b {
     }
 
     private long getBankJoltage(String bank, int batteriesToUse) {
-        long total = 0;
         int maxPos = -1;
+        StringBuilder result = new StringBuilder();
         for (int b = batteriesToUse; b > 0; b--) {
             int start = maxPos + 1;
             int end = bank.length() - b + 1;
             if (start == end) {
                 maxPos = start;
+                result.append(bank.substring(maxPos));
+                break;  
             } else {
                 maxPos = positionOfLargestBatteryInRange(bank, start, end);
             }
-            int digit = bank.charAt(maxPos) - '0';  
-            total += digit * Math.pow(10, b-1);
+            result.append(bank.charAt(maxPos));  
         }          
 
-        return total;
+        return Long.parseLong(result.toString());
     }
 
     private int positionOfLargestBatteryInRange(String bank, int start, int end) {
