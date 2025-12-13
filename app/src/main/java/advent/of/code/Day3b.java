@@ -12,19 +12,21 @@ public class Day3b {
     }
 
     private long getBankJoltage(String bank, int batteriesToUse) {
-        int maxPos = -1;
+        int currentPos = 0;
         StringBuilder result = new StringBuilder();
         for (int b = batteriesToUse; b > 0; b--) {
-            int start = maxPos + 1;
-            int end = bank.length() - b + 1;
-            if (start == end) {
-                maxPos = start;
-                result.append(bank.substring(maxPos));
+            // if the number of batteries remainng equals the number of batteries still to collect
+            if (bank.length() - currentPos == b) {
+                // collect them all in one go
+                result.append(bank.substring(currentPos));
                 break;  
             } else {
-                maxPos = positionOfLargestBatteryInRange(bank, start, end);
+                // else take the largest one from the range of surplus batteries to the amount left to collect
+                int end = bank.length() - b + 1;
+                currentPos = positionOfLargestBatteryInRange(bank, currentPos, end);
+                result.append(bank.charAt(currentPos));  
+                currentPos += 1;
             }
-            result.append(bank.charAt(maxPos));  
         }          
 
         return Long.parseLong(result.toString());
