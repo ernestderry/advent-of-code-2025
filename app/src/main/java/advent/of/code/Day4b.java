@@ -20,13 +20,11 @@ public class Day4b {
 
         List<Coordinate> accessibleRolls = getAccessibleRolls();
 
-        while (accessibleRolls.size() > 0) {
-            accessibleRolls.stream()
-                .forEach(rollCoordinates -> grid[rollCoordinates.row][rollCoordinates.column] = '.');
+        while (!accessibleRolls.isEmpty()) {
+            accessibleRolls.forEach(rollCoordinates -> grid[rollCoordinates.row][rollCoordinates.column] = '.');
             totalRollsRemoved += accessibleRolls.size();
             accessibleRolls = getAccessibleRolls();
         }
-
 
         return String.valueOf(totalRollsRemoved); 
     }
@@ -37,27 +35,7 @@ public class Day4b {
         for (int rowNo = 0; rowNo < totalRows; rowNo++ ) {
             for (int colNo = 0; colNo < totalColumns; colNo++) {
                 if (grid[rowNo][colNo]== '@') {
-                    int neighbours = 0;
-                    for (int horizontalDirection = -1; horizontalDirection <= 1; horizontalDirection++) {
-                        for (int verticalDirection = -1; verticalDirection <= 1; verticalDirection++) {
-                            int neighbourRow = rowNo + horizontalDirection;
-                            int neighbourColumn = colNo + verticalDirection;
-                            if (neighbourRow < 0 || neighbourColumn < 0 ||
-                                neighbourRow >= totalRows || neighbourColumn >= totalColumns) {
-                                continue;
-                            }
-
-                            if (neighbourRow == rowNo && neighbourColumn == colNo) {
-                                continue;
-                            }
-
-                            if (grid[neighbourRow][neighbourColumn] == '@') {
-                                neighbours += 1;
-                            }   
-                                                 
-                        }
-                    }
-                    if (neighbours <= 3) {
+                    if (countNeighbours(rowNo, colNo) <= 3) {
                         accessibleRolls.add(new Coordinate(rowNo, colNo));
                     }
                 }
@@ -66,14 +44,30 @@ public class Day4b {
         return accessibleRolls;
     }
 
-    class Coordinate {
-        int row;
-        int column;
+    private int countNeighbours(int rowNo, int colNo) {
+        int neighbours = 0;
+        for (int horizontalDirection = -1; horizontalDirection <= 1; horizontalDirection++) {
+            for (int verticalDirection = -1; verticalDirection <= 1; verticalDirection++) {
+                int neighbourColumn = colNo + horizontalDirection;
+                int neighbourRow = rowNo + verticalDirection;
+                if (neighbourRow < 0 || neighbourColumn < 0 ||
+                    neighbourRow >= totalRows || neighbourColumn >= totalColumns) {
+                    continue;
+                }
 
-        public Coordinate(int row, int column) {
-            this.row = row;
-            this.column = column;
+                if (neighbourRow == rowNo && neighbourColumn == colNo) {
+                    continue;
+                }
+
+                if (grid[neighbourRow][neighbourColumn] == '@') {
+                    neighbours += 1;
+                }   
+                                     
+            }
         }
+        return neighbours;
     }
+
+    record Coordinate (int row, int column) {};
 }
 
