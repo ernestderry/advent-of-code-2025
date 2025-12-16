@@ -21,38 +21,32 @@ public class Day4a {
             for (int colNo = 0; colNo < totalColumns; colNo++) {
                 if (grid[rowNo][colNo]== '@') {
                     int neighbours = 0;
-                    neighbours += check(rowNo + 1, colNo);
-                    neighbours += check(rowNo - 1, colNo);
-                    neighbours += check(rowNo, colNo + 1);
-                    neighbours += check(rowNo, colNo - 1);
-                    neighbours += check(rowNo + 1, colNo - 1);
-                    neighbours += check(rowNo + 1, colNo + 1);
-                    neighbours += check(rowNo - 1, colNo - 1);
-                    neighbours += check(rowNo - 1, colNo + 1);
+                    for (int horizontalDirection = -1; horizontalDirection <= 1; horizontalDirection++) {
+                        for (int verticalDirection = -1; verticalDirection <= 1; verticalDirection++) {
+                            int neighbourRow = rowNo + horizontalDirection;
+                            int neighbourColumn = colNo + verticalDirection;
+                            if (neighbourRow < 0 || neighbourColumn < 0 ||
+                                neighbourRow >= totalRows || neighbourColumn >= totalColumns) {
+                                continue;
+                            }
+
+                            if (neighbourRow == rowNo && neighbourColumn == colNo) {
+                                continue;
+                            }
+
+                            if (grid[neighbourRow][neighbourColumn] == '@') {
+                                neighbours += 1;
+                            }   
+                                                 
+                        }
+                    }
                     if (neighbours <= 3) {
                         total += 1;
-                        System.out.println(rowNo + " " + colNo);
                     }
                 }
             }
         }
         return String.valueOf(total); 
-    }
-
-    private int check(int rowNo, int colNo) {
-        if (rowNo < 0 || rowNo >= totalRows) {
-            return 0;
-        }
-
-        if (colNo < 0 || colNo >= totalColumns) {
-            return 0;
-        }
-
-        if (grid[rowNo][colNo] == '@') {
-            return 1;
-        }
-
-        return 0;
     }
 }
 
