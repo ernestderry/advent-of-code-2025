@@ -10,12 +10,7 @@ public class Day5a {
         List<String> freshRanges = puzzleInput.subList(0, delimeterPos);
 
         List<Range> ranges = freshRanges.stream()
-            .map(range -> {
-                String[] rangeElements = range.split("-");
-                long min = Long.parseLong(rangeElements[0]);
-                long max = Long.parseLong(rangeElements[1]);
-                return new Range(min, max);
-            }).toList();
+            .map(Range::fromRange).toList();
 
         List<String> ids = puzzleInput.subList(delimeterPos + 1, puzzleInput.size());
 
@@ -28,9 +23,20 @@ public class Day5a {
 
     boolean inRange(String id, List<Range> ranges) {
         long idLong = Long.parseLong(id);
+
         return ranges.stream()
-            .anyMatch(range -> idLong >= range.min && idLong <= range.max);
+            .anyMatch(range -> range.contains(idLong));
     }
 
-    record Range(long min, long max) {};
+    record Range(long min, long max) {
+
+        static Range fromRange(String range) {
+            String[] parts = range.split("-");
+            return new Range(Long.parseLong(parts[0]), Long.parseLong(parts[1])); 
+        }
+
+        boolean contains(long id) {
+            return id >= min && id <= max;
+        }
+    };
 }
